@@ -12,9 +12,10 @@ class MainActViewModel internal constructor(private val newsRepository: NewsRepo
     ViewModel() {
 
     fun getLatestNews(section: String, onComplete: () -> Unit): LiveData<List<NewsItem>> {
-        viewModelScope.launch { newsRepository.getSetLatestNews(section) }.invokeOnCompletion {
-            onComplete.invoke()
-        }
+        viewModelScope.launch { newsRepository.getSetLatestNews(section) }
+            .invokeOnCompletion {
+                onComplete.invoke()
+            }
         return newsRepository.getAllNews(section)
     }
 }

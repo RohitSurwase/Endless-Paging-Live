@@ -10,10 +10,8 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
-import java.io.IOException
 
 interface NyNewsApi {
-    @Throws(IOException::class)
     @GET("{section}.json?api-key=$API_KEY")
     suspend fun getAllNews(@Path(value = "section") section: String): NewsApiResult
 
